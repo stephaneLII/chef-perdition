@@ -1,0 +1,16 @@
+#!/bin/sh
+cd <%= node['chef-perdition']['perdition_home'] %>
+
+# Verification de la connexion LDAP
+ldapsearch -x "<%= node['chef-perdition']['genbase']['check_connexion_uri'] %>" > /dev/null
+if [ $? -eq 255 ] ; then
+	logger "GENPOPMAP : Impossible de se connecter a la base ldap"
+	exit 1
+fi
+
+>popmap
+
+# Constitution du fichier popmap
+<%= node['chef-perdition']['genbase']['populate_data'] %>
+
+make

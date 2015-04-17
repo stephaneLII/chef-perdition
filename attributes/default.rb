@@ -1,0 +1,21 @@
+default['chef-perdition']['perdition_home'] = '/etc/perdition'
+default['chef-perdition']['path-config'] = '/etc/default/perdition'
+default['chef-perdition']['default']['RUN_PERDITION']='yes'
+default['chef-perdition']['default']['FLAGS']=''
+default['chef-perdition']['default']['POP3']='yes'
+default['chef-perdition']['default']['POP3_FLAGS']=''
+default['chef-perdition']['default']['POP3S']='yes'
+default['chef-perdition']['default']['POP3S_FLAGS']=''
+default['chef-perdition']['default']['IMAP4']='yes'
+default['chef-perdition']['default']['IMAP4_FLAGS']=''
+default['chef-perdition']['default']['IMAP4S']='yes'
+default['chef-perdition']['default']['IMAP4S_FLAGS']=''
+default['chef-perdition']['default']['MANAGESIEVE']='yes'
+default['chef-perdition']['default']['MANAGESIEVE_FLAGS']=''
+default['chef-perdition']['ldap-path-conf']='/etc/ldap/ldap.conf'
+default['chef-perdition']['ldap_uri']=''
+default['chef-perdition']['ldap_base']=''
+default['chef-perdition']['genbase-script'] = "#{node['chef-perdition']['perdition_home']}/genpopmap"
+default['chef-perdition']['genbase']['check_connexion_uri'] = ""
+default['chef-perdition']['genbase']['populate_data'] = ""
+
