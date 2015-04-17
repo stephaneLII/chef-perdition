@@ -14,11 +14,6 @@ package 'ldap-utils' do
     action :install
 end
 
-service 'perdition' do
-    supports restart: true, reload: true , stop:true
-    action [:enable, :stop]
-end
-
 template node['chef-perdition']['ldap-path-conf'] do
   source 'ldap-conf.erb'
   owner 'root'
@@ -33,12 +28,22 @@ template node['chef-perdition']['genbase-script'] do
   mode '0700'
 end
 
+# Arret du service perdition pour prendre en compte les changements eventuels du /etc/default/perdition
+service 'perdition' do
+    supports restart: true, reload: true , stop:true
+    action [:enable, :stop]
+end
+
 template node['chef-perdition']['path-config'] do
   source 'perdition-default.erb'
   owner 'root'
   group 'root'
   mode '0644'
-  notifies :restart, 'service[perdition]'
+  notifies :start, 'service[perdition]'
+end
+
+service 'perdition' do
+    action [:start]
 end
 
 genere = "#{node['chef-perdition']['genbase-script']}"
